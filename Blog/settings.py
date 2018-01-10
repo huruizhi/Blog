@@ -25,7 +25,7 @@ SECRET_KEY = '&23k86anj2nj^!mf7a74y6h^cg=q_lqi4gpo(84w-jv@(1^c3b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.zzdream.net', '120.0.0.1', 'localhost', ]
+ALLOWED_HOSTS = ['.zzdream.net', '127.0.0.1', 'localhost', ]
 
 
 # Application definition

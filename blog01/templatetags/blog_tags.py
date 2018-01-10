@@ -34,3 +34,9 @@ def get_tags():
                                   ' having num > 0 ')
 
 
+@register.simple_tag
+def get_nickname(aid):
+    user_info = models.UserInfo.objects.get(user=aid)
+    return user_info.nickname
+
+

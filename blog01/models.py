@@ -7,6 +7,11 @@ import markdown
 # Create your models here.
 
 
+class UserInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING, related_name='user')
+    nickname = models.CharField(max_length=20, )
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
@@ -29,8 +34,12 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=200, blank=True, null=True)
     category = models.ForeignKey('Category', on_delete=models.DO_NOTHING)
     tags = models.ManyToManyField('Tag', blank=True)
-    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='author')
     views = models.PositiveIntegerField(default=0)
+
+    def get_nickname(self):
+        user_info = UserInfo.objects.get(user=self.author)
+        return user_info.nickname
 
     def __str__(self):
         return "title:%s, user:%s, create_time:%s" % (self.title, self.author, self.created_time)
