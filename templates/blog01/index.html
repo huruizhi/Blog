@@ -1,0 +1,75 @@
+{% extends 'Base.html' %}
+
+{% block article %}
+    {% for post in post_list %}
+  <article class="post post-{{ post.pk }}">
+      <header class="entry-header">
+        <h1 class="entry-title">
+         <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+         </h1>
+            <div class="entry-meta">
+               <span class="post-category"><a href="#">{{ post.category.name }}</a></span>
+               <span class="post-date"><a href="#"><time class="entry-date"
+                                                  datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                <span class="post-author"><a href="#">{{ post.author }}</a></span>
+                <span class="comments-link"><a href="#">4 评论</a></span>
+                <span class="views-count"><a href="#">{{ post.views }} 阅读</a></span>
+            </div>
+      </header>
+        <p>{{ post.excerpt }}</p>
+        <div class="read-more cl-effect-14">
+            <a href="{{ post.get_absolute_url }}" class="more-link">继续阅读 <span class="meta-nav">→</span></a>
+        </div>
+  </article>
+
+{% empty %}
+  <div class="no-post">暂时还没有发布的文章！</div>
+{% endfor %}
+
+
+<!--  分页  -->
+{% if contacts.paginator.num_pages > 1 %}
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+      {% if contacts.has_previous %}
+            <li>
+            <a href="?page={{ contacts.previous_page_number }}" >
+                <span aria-hidden="true">&laquo;</span></a>
+            </li>
+          {% else %}
+          <li class="disabled">
+         <span>
+            <span aria-hidden="true">&laquo;</span>
+         </span>
+        </li>
+        {% endif %}
+
+  {% for page_num in page_range %}
+      {% if page_num == contacts.number %}
+           <li class="active">
+      <span>{{ page_num }}</span>
+        </li>
+      {% else %}
+    <li><a  href="?page={{ page_num }}">{{ page_num }}</a></li>
+      {% endif %}
+  {% endfor %}
+
+
+    {% if contacts.has_next %}
+    <li>
+        <a  href="?page={{ contacts.next_page_number }}"  aria-label="Next">
+            <span aria-hidden="true">&raquo;</span></a>
+    </li>
+    {% else %}
+    <li class="disabled">
+        <span>
+        <span aria-hidden="true">&raquo;</span>
+        </span>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
+
+{% endblock %}
