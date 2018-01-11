@@ -99,7 +99,7 @@
                        {% archives as date_list %}
                         {% for date in date_list %}
                             <li>
-                                  <a href="{% url 'archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
+                                  <a href="{% url 'blog01:archives' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>
                             </li>
                         {% empty %}
                             暂无日期分类
@@ -113,7 +113,7 @@
                     <ul>
                         {% for category in category_list %}
                     <li>
-                      <a href="{% url "category" category.category_id %}">{{ category.name }}
+                      <a href="{% url "blog01:category" category.category_id %}">{{ category.name }}
                           <span class="post-count">({{ category.num }})</span></a>
                     </li>
                         {% empty %}
@@ -128,7 +128,7 @@
                   <ul>
                     {% for tag in tag_list %}
                     <li>
-                      <a href="{% url 'tag' tag.tag_id %}">{{ tag.name }}({{ tag.num }})</a>
+                      <a href="{% url 'blog01:tag' tag.tag_id %}">{{ tag.name }}({{ tag.num }})</a>
                     </li>
                     {% empty %}
                     暂无标签！
@@ -148,7 +148,7 @@
     <button type="button" class="overlay-close"><span class="ion-ios-close-empty"></span></button>
     <nav>
         <ul>
-            <li><a href="blog01/index.html">首页</a></li>
+            <li><a href="index.html">首页</a></li>
             <li><a href="full-width.html">博客</a></li>
             <li><a href="about.html">关于</a></li>
             <li><a href="contact.html">联系</a></li>

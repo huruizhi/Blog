@@ -45,7 +45,7 @@ class Post(models.Model):
         return "title:%s, user:%s, create_time:%s" % (self.title, self.author, self.created_time)
 
     def get_absolute_url(self):
-        return reverse("detail",  kwargs={'pk': self.pk})
+        return reverse("blog01:detail",  kwargs={'pk': self.pk})
 
     def auto_add_views(self):
         self.views += 1

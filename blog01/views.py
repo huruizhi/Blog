@@ -62,5 +62,4 @@ def page(request, post_list):
         rows_list = page_rows.page(page_rows.num_pages)
     contacts = page_rows.get_page(page_num)
     page_range = page_rows.page_range
-    print(page_num)
     return rows_list.object_list, contacts, page_range
