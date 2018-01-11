@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from blog01 import views
 from blog01.feeds import AllPostsRssFeed
 
@@ -27,4 +27,5 @@ urlpatterns = [
     re_path('category/(?P<pk>[0-9])/', views.category, name='category'),
     re_path('tag/(?P<pk>[0-9])/', views.tag, name='tag'),
     path('all/rss/', AllPostsRssFeed(), name='rss'),
+    path('accounts/', include('allauth.urls')),
 ]
